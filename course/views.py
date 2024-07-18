@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django_filters.views import FilterView
-
+from quiz.models import Quiz
 from accounts.models import User, Student
 from core.models import Session, Semester
 from result.models import TakenCourse
@@ -394,7 +394,10 @@ def handle_video_upload(request, slug):
 def handle_video_single(request, slug, video_slug):
     course = get_object_or_404(Course, slug=slug)
     video = get_object_or_404(UploadVideo, slug=video_slug)
-    return render(request, "upload/video_single.html", {"video": video})
+    quizzes = Quiz.objects.filter(course=video.course)
+    return render(request, "upload/video_single.html", {"video": video, 'quizzes': quizzes,
+                                                        'video_index': 0,
+                                                        'course': course})
 
 
 @login_required

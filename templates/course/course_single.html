@@ -96,18 +96,18 @@
         <div class="desktop-actions">
             {% if request.user.is_superuser %}
             <a class="btn btn-sm btn-light" href="{% url 'edit_course' course.slug %}">
-                <i class="fas fa-pencil-alt"></i> Edit course
+                <i class="fas fa-pencil-alt"></i> Редактировать курс
             </a>
             {% endif %}
             {% if request.user.is_superuser or request.user.is_lecturer %}
             <a  class="btn btn-sm btn-primary" href="{% url 'upload_video' course.slug %}"><i class="fas fa-plus"></i>
-                Upload new video
+                Загрузить видео
             </a>
             {% endif %}
         </div>
         <div class="ms-auto desktop-actions">
-            <a style="color: white;" class="btn btn-sm btn-warning" href="{% url 'quiz_index' course.slug %}"><i class="fas fa-list"></i>
-                Take a Quiz
+            <a class="btn btn-sm btn-warning" href="{% url 'quiz_index' course.slug %}"><i class="fas fa-list"></i>
+                Задать Квиз
             </a>
         </div>
     </div>
@@ -151,7 +151,7 @@
                             <p class="card-text">{{ video.timestamp|date }}</p>
                             <div class="d-flex justify-content-between">
                                 <a href="{{ video.get_absolute_url }}" class="btn btn-primary">
-                                    <i class="fas fa-play me-1"></i> Play now
+                                    <i class="fas fa-play me-1"></i> Перейти
                                 </a>
                                 {% if request.user.is_superuser or request.user.is_lecturer %}
                                 <div class="update-delete">

@@ -174,8 +174,16 @@ STATICFILES_FINDERS = [
 
 # Media files config
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # -----------------------------------
 EMAIL_HOST = config("EMAIL_HOST", default='smtp.mail.ru')
 EMAIL_PORT = config("EMAIL_PORT", default=465)

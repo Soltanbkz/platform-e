@@ -1,12 +1,15 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views import defaults as default_views
+from django.views.static import serve
 
 admin.site.site_header = "Your Company"
 
 urlpatterns = [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path("jet/", include("jet.urls", "jet")),  # Django JET URLS
     path("jet/dashboard/", include("jet.dashboard.urls", "jet-dashboard")
     ),  # Django JET dashboard URLS
@@ -20,6 +23,10 @@ urlpatterns = [
     path("accounts/api/", include("accounts.api.urls", namespace="accounts-api")),
     path("admin/", admin.site.urls),
 ]
+
+
+urlpatterns += [re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+                re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }), ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

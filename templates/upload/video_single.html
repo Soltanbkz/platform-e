@@ -45,6 +45,12 @@
             margin-left: 0 !important;
         }
     }
+    @media (max-width: 390px) {
+        .quiz_card {
+             width: 100% !important;
+             heigth: 300px !important;
+        }
+     }
 </style>
 
 <div class="col-md-10 mx-auto d-flex display-block">
@@ -78,7 +84,7 @@
             {% for quiz in quizzes %}
                 {% if forloop.counter0 == video_index %}
                     <div class="col-md-6 quiz">
-                        <div style="width: 360px" class="card p-2 quiz-wrapper">
+                        <div style="width: 380px" class="card quiz_card p-2 quiz-wrapper">
                             <div class="d-flex justify-content-between align-items-center text-success mb-4">
                                 <em class="text-left">{{ quiz.category|title }} Quiz</em>
                                 <div class="text-right text-light bg-danger px-2 small rounded">

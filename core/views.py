@@ -93,7 +93,7 @@ def delete_post(request, pk):
     post = get_object_or_404(NewsAndEvents, pk=pk)
     title = post.title
     post.delete()
-    messages.success(request, (title + "был успешно удален"))
+    messages.success(request, (title + " был успешно удален"))
     return redirect("home")
 
 

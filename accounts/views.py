@@ -2,7 +2,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout
 from django.views.generic import CreateView, ListView
 from django.db.models import Q
 from django.utils.decorators import method_decorator
@@ -63,15 +63,13 @@ def profile(request):
         ).filter(semester=current_semester)
         context = {**common_context, "courses": courses}
     elif request.user.is_student:
-        level = Student.objects.get(student__pk=request.user.id)
         try:
-            parent = Parent.objects.get(student=level)
+            parent = Parent.objects.get()
         except Parent.DoesNotExist:
             parent = "no parent set"
         courses = TakenCourse.objects.filter(
-            student__student__id=request.user.id, course__level=level.level
         )
-        context = {**common_context, "parent": parent, "courses": courses, "level": level}
+        context = {**common_context, "parent": parent, "courses": courses, }
     else:
         staff = User.objects.filter(is_lecturer=True)
         context = {**common_context, "staff": staff}
@@ -135,6 +133,7 @@ def admin_panel(request):
     return render(
         request, "setting/admin_panel.html", {"title": request.user.get_full_name}
     )
+
 
 
 # ########################################################

@@ -5,6 +5,12 @@
 		background-size: cover;
 		background-position: top center;
 	}
+
+	@media (max-width: 1150px) {
+		.web-logo {
+			margin-top: 20px !important
+		}
+	}
 </style>
 
 <div id="side-nav">
@@ -16,7 +22,7 @@
 				</div>
 			</div>
 			<a href="/">
-				<img src="{% static 'img/logo.png' %}" width="110px" alt="Logo MSA">
+				<img class="web-logo" src="{% static 'img/logo.png' %}" width="110px" alt="Logo MSA">
 			</a>
 			<p class="text-orange">
 				<mark>

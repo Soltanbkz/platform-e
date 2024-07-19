@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -22,6 +23,8 @@ urlpatterns = [
     path("payments/", include("payments.urls")),
     path("accounts/api/", include("accounts.api.urls", namespace="accounts-api")),
     path("admin/", admin.site.urls),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+
 ]
 
 

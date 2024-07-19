@@ -257,6 +257,3 @@ JAZZMIN_SETTINGS = {
 CSRF_TRUSTED_ORIGINS = ['https://soltanbekovbeknazar.kz']
 
 SITE_ID = 1
-
-DEFAULT_FROM_EMAIL = "no-reply@soltanbekovbeknazar.kz"
-SERVER_EMAIL = "server@soltanbekovbeknazar.kz"

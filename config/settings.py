@@ -23,7 +23,6 @@ AUTH_USER_MODEL = "accounts.User"
 # Application definition
 
 DJANGO_APPS = [
-    "jazzmin",
     "jet.dashboard",
     "jet",
     "django_extensions",

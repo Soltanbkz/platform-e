@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin):
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
                                     'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('Additional info', {'fields': ('is_student', 'is_lecturer', 'is_parent', 'is_dep_head', 'gender', 'phone', 'address', 'picture')}),
+        ('Additional info', {'fields': ('is_student', 'is_lecturer', 'is_parent', 'gender', 'phone', 'address', 'picture')}),
     )
 
     add_fieldsets = (

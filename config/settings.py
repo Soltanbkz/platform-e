@@ -1,5 +1,6 @@
 import os
 from decouple import config
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,7 +14,7 @@ SECRET_KEY = config(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["soltanbekovbeknazar.kz", "127.0.0.1"]
 
@@ -23,8 +24,7 @@ AUTH_USER_MODEL = "accounts.User"
 # Application definition
 
 DJANGO_APPS = [
-    "jet.dashboard",
-    "jet",
+    "jazzmin",
     "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -193,6 +193,9 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default='z1mXPgywTE00Drxhsk6
 EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default='beknazarplatform@mail.ru')
 
+DOMAIN = config('DOMAIN', default='soltanbekovbeknazar.kz')
+SITE_NAME = config('SITE_NAME', default='soltanbekovbeknazar.kz')
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
@@ -254,5 +257,3 @@ JAZZMIN_SETTINGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = ['https://soltanbekovbeknazar.kz']
-
-SITE_ID = 1

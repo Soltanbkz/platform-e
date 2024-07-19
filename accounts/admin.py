@@ -39,6 +39,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('username', 'password1', 'password2'),
         }),
     )
+
     ordering = ('username',)
     filter_horizontal = ('groups', 'user_permissions',)
 

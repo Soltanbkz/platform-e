@@ -395,9 +395,19 @@ def handle_video_single(request, slug, video_slug):
     course = get_object_or_404(Course, slug=slug)
     video = get_object_or_404(UploadVideo, slug=video_slug)
     quizzes = Quiz.objects.filter(course=video.course)
-    return render(request, "upload/video_single.html", {"video": video, 'quizzes': quizzes,
-                                                        'video_index': 0,
-                                                        'course': course})
+
+    # Retrieve all videos for the course
+    videos = list(course.uploadvideo_set.all())
+
+    # Find the index of the current video
+    video_index = videos.index(video)
+
+    return render(request, "upload/video_single.html", {
+        "video": video,
+        "quizzes": quizzes,
+        "video_index": video_index,
+        "course": course
+    })
 
 
 @login_required

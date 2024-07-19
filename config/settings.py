@@ -15,7 +15,7 @@ SECRET_KEY = config(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "soltanbekovbeknazar.kz"]
+ALLOWED_HOSTS = ["soltanbekovbeknazar.kz"]
 
 # change the default user models to our custom model
 AUTH_USER_MODEL = "accounts.User"
@@ -255,3 +255,8 @@ JAZZMIN_SETTINGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = ['https://soltanbekovbeknazar.kz']
+
+SITE_ID = 1
+
+DEFAULT_FROM_EMAIL = "no-reply@soltanbekovbeknazar.kz"
+SERVER_EMAIL = "server@soltanbekovbeknazar.kz"

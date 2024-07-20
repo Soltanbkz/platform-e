@@ -127,12 +127,15 @@ def program_delete(request, pk):
 # ########################################################
 @login_required
 def course_single(request, slug):
-    course = Course.objects.get(slug=slug)
-    files = Upload.objects.filter(course__slug=slug)
-    videos = UploadVideo.objects.filter(course__slug=slug)
+    # Retrieve the course, handling the case where it does not exist
+    course = get_object_or_404(Course, slug=slug)
 
-    # lecturers = User.objects.filter(allocated_lecturer__pk=course.id)
-    lecturers = CourseAllocation.objects.filter(courses__pk=course.id)
+    # Retrieve related files and videos
+    files = Upload.objects.filter(course=course)
+    videos = UploadVideo.objects.filter(course=course)
+
+    # Retrieve lecturers using CourseAllocation, ensuring efficient queries
+    lecturers = CourseAllocation.objects.filter(courses=course).select_related('user')
 
     return render(
         request,
@@ -143,10 +146,9 @@ def course_single(request, slug):
             "files": files,
             "videos": videos,
             "lecturers": lecturers,
-            "media_url": settings.MEDIA_ROOT,
+            "media_url": settings.MEDIA_URL,  # Use MEDIA_URL for linking media files
         },
     )
-
 
 @login_required
 @lecturer_required

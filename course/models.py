@@ -290,6 +290,7 @@ class UploadVideo(models.Model):
             "video_single", kwargs={"slug": self.course.slug, "video_slug": self.slug}
         )
 
+
     def get_previous_video(self):
         previous_video = UploadVideo.objects.filter(course=self.course, id__lt=self.id).order_by('-id').first()
         return previous_video

@@ -408,7 +408,8 @@ def handle_video_single(request, slug, video_slug):
         "video": video,
         "quizzes": quizzes,
         "video_index": video_index,
-        "course": course
+        "course": course,
+        "slug" : slug,
     })
 
 
